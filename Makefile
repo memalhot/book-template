@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 .PHONY: help build pub clean
-DIR=$(shell pwd -p)
+DIR=$(shell pwd -P)
 NAME=$(shell basename ${DIR})
 
 OUTDIR=${DIR}/${NAME}
