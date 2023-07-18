@@ -2,7 +2,6 @@ SHELL := /bin/bash
 .PHONY: help build pub clean
 DIR=$(shell pwd -p)
 NAME=$(shell basename ${DIR})
-SN=tb
 
 OUTDIR=${DIR}/${NAME}
 CNTDIR=content
@@ -17,7 +16,7 @@ jb:
 	# -W make warning treated as errors
 	# -n nitpick generate warnings for all missing links
 	# --keep-going despite -W don't stop delay errors till the end
-	jupyter-book build -v --all -n --keep-going --path-output ${OUTDIR} --config ${PWD}/${CNTDIR}/${SN}_config.yml --toc ${PWD}/${CNTDIR}/${SN}_toc.yml ${CNTDIR}
+	jupyter-book build -v --all -n --keep-going --path-output ${OUTDIR} --config ${PWD}/${CNTDIR}/${NAME}_config.yml --toc ${PWD}/${CNTDIR}/${NAME}_toc.yml ${CNTDIR}
 
 images: jb
 	-mkdir -p ${OUTDIR}/_build/html/images
@@ -38,14 +37,6 @@ pub:
 clean: 
 	${RM} -r  ${OUTDIR}
 
-
 help:
 # http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) |  awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-
-pub: ## publish the book to github pages 
-	make --no-print-directory -f book.mk pub
-
-clean: ## cleanup/remove book build files
-	make --no-print-directory -f book.mk clean
