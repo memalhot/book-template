@@ -3,7 +3,7 @@ SHELL := /bin/bash
 DIR=$(shell pwd -P)
 NAME=$(shell basename ${DIR})
 
-OUTDIR=${DIR}/${NAME}
+OUTDIR=${DIR}
 CNTDIR=content
 
 .PHONY: all jb build fixlinks images pub clean
