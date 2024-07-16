@@ -2,6 +2,8 @@
 #set -x
 
 branch=$1
+git add .
+git commit -m "updating book"
 
 [[ -z $branch ]] && branch=gh-pages
 
